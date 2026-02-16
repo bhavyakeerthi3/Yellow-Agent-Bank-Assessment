@@ -1,0 +1,50 @@
+{
+    "triggerOTP": {
+        "method": "POST",
+        "path": "/api/auth/trigger-otp",
+        "response": {
+            "status": "success",
+            "data": {
+                "otp": "1234"
+            }
+        }
+    },
+    "verifyOTP": {
+        "method": "POST",
+        "path": "/api/auth/verify-otp",
+        "response": {
+            "status": "success",
+            "message": "OTP Verified Successfully"
+        }
+    },
+    "getLoanAccounts": {
+        "method": "POST",
+        "path": "/api/loans/accounts",
+        "response": {
+            "status": "success",
+            "data": {
+                "loan_accounts": [
+                    {
+                        "loan_account_id": "LA123",
+                        "loan_type": "Home Loan",
+                        "tenure_months": 240,
+                        "internal_audit_code": "SEC-88",
+                        "bank_branch": "Main"
+                    }
+                ]
+            }
+        }
+    },
+    "loanDetails": {
+        "method": "POST",
+        "path": "/api/loans/details",
+        "response": {
+            "loan_type": "Home Loan",
+            "interest_rate": "8.5%",
+            "tenure_months": 240,
+            "principal_pending": "₹45,00,000",
+            "next_due_date": "05/03/2026",
+            "nominee_name": "Keerthi"
+        }
+    }
+}
