@@ -26,19 +26,21 @@ The system uses a **Hybrid Orchestration** model:
 ### Logic Flow 
 ![Yellow.ai Flow Architecture](./docs/images/yellow_ai_flow.png)
 
-```mermaid
-```mermaid
-graph TD
-    User((User)) -->|"Show loan details"| Yellow[Yellow.ai Super Agent]
-    Yellow -->|"POST /trigger-otp"| Beeceptor[Beeceptor Mock Server]
-    Beeceptor -->|"Return OTP (1234)"| Yellow
-    Yellow -->|"Verify OTP"| User
-    User -->|"OTP Verified"| Yellow
-    Yellow -->|"POST /get-accounts"| Beeceptor
-    Beeceptor -->|"Massive JSON"| Function[JS Projection Node]
-    Function -->|"Lightweight JSON"| Yellow
-    Yellow -->|"Dynamic Carousel"| User
-```
+### Logic Flow Table
+
+| Step | Actor | Action | Data / Details |
+| :--- | :--- | :--- | :--- |
+| **1** | 👤 User | Requests Loan Details | Intent: `loan_details` |
+| **2** | 🤖 Yellow.ai | Triggers OTP | `POST /api/auth/trigger-otp` |
+| **3** | 🌐 Beeceptor | Returns Mock OTP | Value: `1234` |
+| **4** | 🤖 Yellow.ai | Requests Verification | User enters OTP |
+| **5** | 👤 User | Enters OTP | Input: `1234` |
+| **6** | 🤖 Yellow.ai | Verifies OTP | Logic Condition: `user_otp == api_otp` |
+| **7** | 🤖 Yellow.ai | Fetches Accounts | `POST /api/loans/accounts` |
+| **8** | 🌐 Beeceptor | Returns Raw Data | 15+ fields (Massive JSON) |
+| **9** | ⚡ Function Node | **Projects Data** | Filters to 3 fields (ID, Type, Tenure) |
+| **10** | 🤖 Yellow.ai | Displays Carousel | Dynamic Cards for selection |
+
 
 ---
 
