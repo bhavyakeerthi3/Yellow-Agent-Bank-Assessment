@@ -1,4 +1,4 @@
-# 🏦 Yellow Bank - Gen AI Banking Agent
+# Yellow Bank - Gen AI Banking Agent
 A production-ready conversational AI agent built on the **Yellow.ai** platform. This agent orchestrates secure authentication and dynamic data retrieval for a mock banking ecosystem.
 
 ---
@@ -18,7 +18,7 @@ A production-ready conversational AI agent built on the **Yellow.ai** platform. 
 
 ---
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 The system uses a **Hybrid Orchestration** model:
 *   **Yellow.ai**: Handles NLU (Intent/Entity recognition), State Management, and LLM Guardrails.
 *   **Beeceptor**: Provides the mock RESTful API layer for identity and financial data.
@@ -30,21 +30,21 @@ The system uses a **Hybrid Orchestration** model:
 
 | Step | Actor | Action | Data / Details |
 | :--- | :--- | :--- | :--- |
-| **1** | 👤 User | Requests Loan Details | Intent: `loan_details` |
-| **2** | 🤖 Yellow.ai | Triggers OTP | `POST /api/auth/trigger-otp` |
-| **3** | 🌐 Beeceptor | Returns Mock OTP | Value: `1234` |
-| **4** | 🤖 Yellow.ai | Requests Verification | User enters OTP |
-| **5** | 👤 User | Enters OTP | Input: `1234` |
-| **6** | 🤖 Yellow.ai | Verifies OTP | Logic Condition: `user_otp == api_otp` |
-| **7** | 🤖 Yellow.ai | Fetches Accounts | `POST /api/loans/accounts` |
-| **8** | 🌐 Beeceptor | Returns Raw Data | 15+ fields (Massive JSON) |
-| **9** | ⚡ Function Node | **Projects Data** | Filters to 3 fields (ID, Type, Tenure) |
-| **10** | 🤖 Yellow.ai | Displays Carousel | Dynamic Cards for selection |
+| **1** | User | Requests Loan Details | Intent: `loan_details` |
+| **2** | Yellow.ai | Triggers OTP | `POST /api/auth/trigger-otp` |
+| **3** | Beeceptor | Returns Mock OTP | Value: `1234` |
+| **4** | Yellow.ai | Requests Verification | User enters OTP |
+| **5** | User | Enters OTP | Input: `1234` |
+| **6** | Yellow.ai | Verifies OTP | Logic Condition: `user_otp == api_otp` |
+| **7** | Yellow.ai | Fetches Accounts | `POST /api/loans/accounts` |
+| **8** | Beeceptor | Returns Raw Data | 15+ fields (Massive JSON) |
+| **9** | Function Node | **Projects Data** | Filters to 3 fields (ID, Type, Tenure) |
+| **10** | Yellow.ai | Displays Carousel | Dynamic Cards for selection |
 
 
 ---
 
-## 🛠️ Step-by-Step Implementation
+## Step-by-Step Implementation
 
 ### 1. Secure Authentication & OTP
 The agent collects the `phone_number` and `dob`, then triggers a `POST` request to Beeceptor. To prevent hallucinations, the OTP verification is handled via a **Logic Condition** rather than letting the LLM guess the value.
