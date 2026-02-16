@@ -27,16 +27,17 @@ The system uses a **Hybrid Orchestration** model:
 ![Yellow.ai Flow Architecture](./docs/images/yellow_ai_flow.png)
 
 ```mermaid
+```mermaid
 graph TD
-    User((User)) -->|Show loan details| Yellow[Yellow.ai Super Agent]
-    Yellow -->|POST /trigger-otp| Beeceptor[Beeceptor Mock Server]
-    Beeceptor -->|Return OTP (1234)| Yellow
-    Yellow -->|Verify OTP| User
-    User -->|OTP Verified| Yellow
-    Yellow -->|POST /get-accounts| Beeceptor
-    Beeceptor -->|Massive JSON| Function[JS Projection Node]
-    Function -->|Lightweight JSON| Yellow
-    Yellow -->|Dynamic Carousel| User
+    User((User)) -->|"Show loan details"| Yellow[Yellow.ai Super Agent]
+    Yellow -->|"POST /trigger-otp"| Beeceptor[Beeceptor Mock Server]
+    Beeceptor -->|"Return OTP (1234)"| Yellow
+    Yellow -->|"Verify OTP"| User
+    User -->|"OTP Verified"| Yellow
+    Yellow -->|"POST /get-accounts"| Beeceptor
+    Beeceptor -->|"Massive JSON"| Function[JS Projection Node]
+    Function -->|"Lightweight JSON"| Yellow
+    Yellow -->|"Dynamic Carousel"| User
 ```
 
 ---
